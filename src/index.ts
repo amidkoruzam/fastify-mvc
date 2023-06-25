@@ -3,6 +3,7 @@ import path from "path";
 import ejs from "ejs";
 import viewPlugin from "@fastify/view";
 import staticPlugin from "@fastify/static";
+import fastifyCookie from "@fastify/cookie";
 
 import { registerGetRoute, registerPostRoute } from "./routes/auth/register";
 import fastifyFormbody from "@fastify/formbody";
@@ -21,6 +22,7 @@ const server = fastify({
 });
 
 server.register(fastifyFormbody);
+server.register(fastifyCookie, { secret: process.env.COOKIE_SECRET });
 
 server.register(staticPlugin, {
   root: path.join(__dirname, "public"),
