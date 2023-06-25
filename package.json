@@ -15,6 +15,7 @@
   "dependencies": {
     "@fastify/cookie": "^8.3.0",
     "@fastify/formbody": "^7.4.0",
+    "@fastify/secure-session": "^6.1.0",
     "@fastify/static": "^6.10.2",
     "@fastify/view": "^7.4.1",
     "ajv-errors": "^3.0.0",

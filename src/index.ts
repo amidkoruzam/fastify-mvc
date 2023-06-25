@@ -8,6 +8,8 @@ import fastifyCookie from "@fastify/cookie";
 import { registerGetRoute, registerPostRoute } from "./routes/auth/register";
 import fastifyFormbody from "@fastify/formbody";
 import dotenv from "dotenv";
+import fastifySecureSession from "@fastify/secure-session";
+import { readFileSync } from "fs";
 
 dotenv.config();
 
@@ -23,6 +25,10 @@ const server = fastify({
 
 server.register(fastifyFormbody);
 server.register(fastifyCookie, { secret: process.env.COOKIE_SECRET });
+server.register(fastifySecureSession, {
+  key: readFileSync("./session.key"),
+  cookieName: "sid",
+});
 
 server.register(staticPlugin, {
   root: path.join(__dirname, "public"),
